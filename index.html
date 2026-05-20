@@ -1,0 +1,1452 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Svenja Klein – Buchhaltung, Digitalisierung und HR-Prozesse für Gastronomen, KMU und Einzelunternehmer. sevDesk, Lexoffice, Personio. Zahlen. Digital. Klar.">
+  <meta name="author" content="Svenja Klein">
+  <meta property="og:title" content="Svenja Klein – Zahlen. Digital. Klar.">
+  <meta property="og:description" content="Dein Steuerberater redet. Ich mache. Buchhaltung und Digitalisierung für Gastro, KMU und Freelancer.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://zahlen-digital-klar.de">
+  <title>Svenja Klein – Zahlen. Digital. Klar.</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+
+  <style>
+    /* ═══════════════════════════════════════
+       CSS VARIABLEN & RESET
+    ═══════════════════════════════════════ */
+    :root {
+      --violet:     #252333;
+      --violet-mid: #2e2c40;
+      --violet-soft:#3a3550;
+      --mint:       #5DEBB8;
+      --mint-dark:  #2dbb8a;
+      --mint-light: #E8FFF7;
+      --lav:        #C8A8FF;
+      --lav-soft:   rgba(200,168,255,0.12);
+      --offwhite:   #F5F3EE;
+      --offwhite-dark: #e8e4dc;
+      --text-dark:  #EEE8FF;
+      --text-mid:   #9189AA;
+      --text-muted: #5a5870;
+      --font-sans:  'DM Sans', sans-serif;
+      --font-serif: 'DM Serif Display', serif;
+      --radius-lg:  20px;
+      --radius-md:  14px;
+      --radius-sm:  10px;
+      --radius-pill:100px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-sans);
+      background: var(--offwhite);
+      color: var(--violet);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+
+    /* ═══════════════════════════════════════
+       UTILITY
+    ═══════════════════════════════════════ */
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .tag {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      border-radius: var(--radius-pill);
+    }
+    .tag-mint  { background: var(--mint); color: #0a3d28; }
+    .tag-lav   { background: var(--lav-soft); color: var(--lav); border: 0.5px solid rgba(200,168,255,0.3); }
+    .tag-ghost { background: rgba(255,255,255,0.07); color: var(--text-mid); border: 0.5px solid var(--violet-soft); }
+
+    .btn {
+      display: inline-block;
+      padding: 12px 28px;
+      border-radius: var(--radius-pill);
+      font-family: var(--font-sans);
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      border: none;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+    }
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+    .btn-mint  { background: var(--mint); color: #0a3d28; }
+    .btn-ghost { background: transparent; color: var(--text-mid); border: 0.5px solid var(--violet-soft); }
+    .btn-ghost:hover { border-color: var(--mint); color: var(--mint); }
+
+    section { padding: 80px 0; }
+
+    /* ═══════════════════════════════════════
+       NAVIGATION
+    ═══════════════════════════════════════ */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 16px 0;
+      transition: background 0.3s ease, backdrop-filter 0.3s ease;
+    }
+    nav.scrolled {
+      background: rgba(37,35,51,0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+    /* Logo Icon – Kreis-Cluster */
+    .logo-icon {
+      position: relative;
+      width: 36px;
+      height: 36px;
+      flex-shrink: 0;
+    }
+    .logo-icon svg { width: 36px; height: 36px; }
+
+    .nav-wordmark { display: flex; flex-direction: column; gap: 1px; }
+    .nav-name  { font-size: 15px; font-weight: 500; color: var(--text-dark); line-height: 1; }
+    .nav-claim { font-size: 9px; font-weight: 600; letter-spacing: 0.1em; color: var(--mint); text-transform: uppercase; }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 13px;
+      color: var(--text-mid);
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--mint); }
+
+    .nav-cta { font-size: 13px !important; padding: 8px 20px !important; }
+
+    .nav-burger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+    }
+    .nav-burger span {
+      display: block;
+      width: 22px;
+      height: 1.5px;
+      background: var(--text-dark);
+      border-radius: 2px;
+      transition: transform 0.3s, opacity 0.3s;
+    }
+
+    /* ═══════════════════════════════════════
+       HERO
+    ═══════════════════════════════════════ */
+    #hero {
+      background: var(--violet);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      padding: 120px 0 80px;
+    }
+
+    .hero-deco {
+      position: absolute;
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    .hero-deco-1 {
+      width: 600px; height: 600px;
+      top: -200px; right: -150px;
+      background: var(--mint);
+      opacity: 0.05;
+      animation: float 8s ease-in-out infinite;
+    }
+    .hero-deco-2 {
+      width: 300px; height: 300px;
+      bottom: -80px; left: 80px;
+      background: var(--lav);
+      opacity: 0.06;
+      animation: float 10s ease-in-out infinite reverse;
+    }
+    .hero-deco-3 {
+      width: 120px; height: 120px;
+      top: 30%; right: 20%;
+      background: var(--mint);
+      opacity: 0.08;
+      animation: float 6s ease-in-out infinite;
+    }
+    .hero-deco-4 {
+      width: 60px; height: 60px;
+      top: 20%; right: 30%;
+      background: var(--lav);
+      opacity: 0.12;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50%       { transform: translateY(-20px); }
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 680px;
+    }
+
+    .hero-tag { margin-bottom: 24px; }
+
+    .hero-headline {
+      font-family: var(--font-serif);
+      font-size: clamp(40px, 6vw, 68px);
+      font-weight: 400;
+      color: var(--text-dark);
+      line-height: 1.15;
+      margin-bottom: 8px;
+    }
+    .hero-headline em {
+      font-style: italic;
+      color: var(--mint);
+    }
+    .hero-headline-2 {
+      font-family: var(--font-serif);
+      font-size: clamp(40px, 6vw, 68px);
+      font-weight: 400;
+      color: var(--mint);
+      line-height: 1.15;
+      margin-bottom: 32px;
+    }
+
+    .hero-sub {
+      font-size: 16px;
+      color: var(--text-mid);
+      line-height: 1.8;
+      margin-bottom: 36px;
+      max-width: 520px;
+    }
+    .hero-sub strong { color: var(--text-dark); font-weight: 500; }
+    .hero-sub em { color: var(--mint); font-style: normal; }
+
+    .hero-cta { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 48px; }
+
+    .hero-pills {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .hero-pill {
+      font-size: 11px;
+      padding: 5px 14px;
+      border-radius: var(--radius-pill);
+      background: rgba(255,255,255,0.05);
+      color: var(--text-mid);
+      border: 0.5px solid var(--violet-soft);
+    }
+    .hero-pill span { color: var(--mint); }
+
+    /* ═══════════════════════════════════════
+       TRUST BAR
+    ═══════════════════════════════════════ */
+    #trust {
+      background: var(--offwhite);
+      padding: 60px 0;
+    }
+
+    .trust-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--offwhite-dark);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      margin-bottom: 12px;
+    }
+
+    .trust-item {
+      background: var(--offwhite);
+      padding: 2rem 1.75rem;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .trust-icon {
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      margin-bottom: 4px;
+    }
+    .trust-icon-mint { background: rgba(93,235,184,0.12); }
+    .trust-icon-lav  { background: rgba(200,168,255,0.12); }
+
+    .trust-title { font-size: 16px; font-weight: 500; color: var(--violet); }
+    .trust-body  { font-size: 13px; color: #6a7a86; line-height: 1.7; }
+    .trust-body em { color: #1a6645; font-style: normal; font-weight: 500; }
+
+    .stats-bar {
+      background: var(--violet);
+      border-radius: var(--radius-md);
+      padding: 1.25rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .stat { text-align: center; }
+    .stat-num  { font-size: 26px; font-weight: 500; color: var(--mint); line-height: 1; margin-bottom: 4px; }
+    .stat-label{ font-size: 11px; color: var(--text-mid); }
+    .stat-sep  { width: 0.5px; height: 36px; background: var(--violet-soft); }
+
+    /* ═══════════════════════════════════════
+       STATEMENT ZWISCHENTITEL
+    ═══════════════════════════════════════ */
+    .statement-section {
+      background: var(--offwhite);
+      padding: 60px 0;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .statement-deco {
+      position: absolute;
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    .statement-eyebrow {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--mint);
+      margin-bottom: 14px;
+    }
+    .statement-text {
+      font-family: var(--font-serif);
+      font-size: clamp(28px, 5vw, 52px);
+      font-weight: 400;
+      color: var(--violet);
+      line-height: 1.2;
+    }
+    .statement-text em { color: var(--mint); font-style: italic; }
+    .statement-line {
+      width: 48px; height: 2px;
+      background: var(--mint);
+      margin: 20px auto 0;
+      border-radius: 2px;
+    }
+
+    /* ═══════════════════════════════════════
+       LEISTUNGEN
+    ═══════════════════════════════════════ */
+    #leistungen { background: var(--offwhite); }
+
+    .section-header { margin-bottom: 40px; }
+    .section-eyebrow {
+      font-size: 10px; font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--mint); margin-bottom: 10px;
+    }
+    .section-title {
+      font-family: var(--font-serif);
+      font-size: clamp(28px, 4vw, 40px);
+      font-weight: 400;
+      color: var(--violet);
+      line-height: 1.2;
+    }
+    .section-sub {
+      font-size: 15px; color: #6a7a86;
+      margin-top: 10px; max-width: 500px;
+      line-height: 1.7;
+    }
+
+    .leistungen-group { margin-bottom: 40px; }
+    .group-divider {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    .group-divider-line { flex: 1; height: 0.5px; background: var(--offwhite-dark); }
+    .group-divider-label {
+      font-size: 10px; font-weight: 600;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      padding: 3px 14px; border-radius: var(--radius-pill);
+    }
+
+    .leistungen-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 10px;
+    }
+
+    .leistung-card {
+      background: white;
+      border-radius: var(--radius-md);
+      padding: 1.25rem;
+      border: 0.5px solid var(--offwhite-dark);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .leistung-card:hover { border-color: var(--mint); transform: translateY(-2px); }
+    .leistung-card.mint-card { border-color: rgba(93,235,184,0.4); background: rgba(93,235,184,0.04); }
+    .leistung-card.lav-card  { border-color: rgba(200,168,255,0.4); background: rgba(200,168,255,0.04); }
+    .leistung-card.star-card {
+      grid-column: span 2;
+      background: var(--violet);
+      border-color: var(--mint);
+    }
+
+    .card-icon-wrap {
+      width: 36px; height: 36px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 16px;
+    }
+    .card-badge {
+      font-size: 9px; font-weight: 600; letter-spacing: 0.06em;
+      padding: 2px 8px; border-radius: var(--radius-pill);
+      align-self: flex-start;
+    }
+    .card-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; }
+    .card-title { font-size: 13px; font-weight: 500; color: var(--violet); line-height: 1.3; }
+    .star-card .card-title { color: var(--text-dark); font-size: 15px; }
+    .card-body  { font-size: 11px; color: #6a7a86; line-height: 1.65; }
+    .star-card .card-body { color: var(--text-mid); font-size: 12px; }
+    .star-card .card-body em { color: var(--mint); font-style: normal; }
+    .card-note {
+      font-size: 10px; color: var(--text-mid);
+      padding: 6px 10px; border-radius: 8px;
+      background: var(--lav-soft);
+      border: 0.5px solid rgba(200,168,255,0.3);
+    }
+    .card-chips { display: flex; gap: 5px; flex-wrap: wrap; }
+    .card-chip {
+      font-size: 9px; font-weight: 500;
+      padding: 2px 8px; border-radius: var(--radius-pill);
+    }
+
+    /* ═══════════════════════════════════════
+       TECH STACK
+    ═══════════════════════════════════════ */
+    #tools { background: var(--violet); }
+
+    #tools .section-eyebrow { color: var(--mint); }
+    #tools .section-title   { color: var(--text-dark); }
+    #tools .section-sub     { color: var(--text-mid); }
+
+    .tools-group-label {
+      font-size: 10px; font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      margin-bottom: 10px; margin-top: 28px;
+    }
+    .tools-group-label.mint { color: var(--mint); }
+    .tools-group-label.lav  { color: var(--lav); }
+
+    .tools-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 8px;
+    }
+
+    .tool-card {
+      background: var(--violet-mid);
+      border-radius: var(--radius-sm);
+      padding: 14px;
+      border: 0.5px solid var(--violet-soft);
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      position: relative;
+      transition: border-color 0.2s;
+    }
+    .tool-card:hover { border-color: var(--mint); }
+    .tool-card.highlight { border-color: rgba(93,235,184,0.4); background: rgba(93,235,184,0.04); }
+    .tool-card.lav-tool  { border-color: rgba(200,168,255,0.3); background: rgba(200,168,255,0.04); }
+
+    .tool-badge {
+      position: absolute; top: 8px; right: 8px;
+      font-size: 8px; font-weight: 600;
+      padding: 2px 7px; border-radius: var(--radius-pill);
+    }
+    .tool-name { font-size: 13px; font-weight: 500; color: var(--text-dark); }
+    .tool-desc { font-size: 10px; color: var(--text-mid); line-height: 1.5; }
+
+    .tools-footer {
+      margin-top: 28px;
+      padding-top: 24px;
+      border-top: 0.5px solid var(--violet-soft);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .tools-footer-text { font-size: 13px; color: var(--text-mid); line-height: 1.6; }
+    .tools-footer-text em { color: var(--mint); font-style: normal; }
+
+    /* ═══════════════════════════════════════
+       ÜBER MICH
+    ═══════════════════════════════════════ */
+    #ueber-mich { background: var(--violet); }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.6fr;
+      gap: 48px;
+      align-items: start;
+    }
+
+    .about-photo-circle {
+      width: 100%;
+      max-width: 220px;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background: var(--violet-mid);
+      border: 1.5px solid rgba(200,168,255,0.2);
+      overflow: hidden;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .about-photo-circle img { width: 100%; height: 100%; object-fit: cover; }
+    .about-photo-placeholder {
+      font-size: 60px;
+      opacity: 0.3;
+      user-select: none;
+    }
+    .about-photo-ring {
+      position: absolute;
+      border-radius: 50%;
+      border: 0.5px solid rgba(93,235,184,0.2);
+      pointer-events: none;
+    }
+
+    .about-fact-chips {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+      margin-top: 20px;
+    }
+    .about-fact-chip {
+      font-size: 12px; font-weight: 500;
+      padding: 7px 14px;
+      border-radius: var(--radius-pill);
+      background: var(--violet-mid);
+      color: var(--text-mid);
+      border: 0.5px solid var(--violet-soft);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .about-fact-chip .chip-accent { color: var(--mint); }
+    .about-fact-chip .chip-lav    { color: var(--lav); }
+
+    .about-eyebrow { font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--lav); margin-bottom: 12px; }
+
+    .about-headline {
+      font-family: var(--font-serif);
+      font-size: clamp(24px, 3.5vw, 36px);
+      font-weight: 400;
+      color: var(--text-dark);
+      line-height: 1.3;
+      margin-bottom: 24px;
+    }
+    .about-headline em { color: var(--lav); font-style: italic; }
+
+    .about-text { font-size: 14px; color: var(--text-mid); line-height: 1.85; margin-bottom: 16px; }
+    .about-text strong { color: var(--text-dark); font-weight: 500; }
+    .about-text em     { color: var(--mint); font-style: normal; }
+
+    .about-quote {
+      border-left: 2px solid var(--lav);
+      padding: 10px 18px;
+      margin: 20px 0;
+    }
+    .about-quote p {
+      font-family: var(--font-serif);
+      font-size: 17px;
+      font-style: italic;
+      color: var(--text-dark);
+      line-height: 1.5;
+    }
+
+    /* ═══════════════════════════════════════
+       ZIELGRUPPEN
+    ═══════════════════════════════════════ */
+    #zielgruppen { background: var(--offwhite); }
+
+    .pain-intro {
+      background: var(--violet);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      margin-bottom: 20px;
+      position: relative;
+      overflow: hidden;
+    }
+    .pain-intro-deco { position: absolute; border-radius: 50%; pointer-events: none; }
+    .pain-intro-tag { margin-bottom: 12px; }
+    .pain-intro-text {
+      font-family: var(--font-serif);
+      font-size: clamp(18px, 3vw, 26px);
+      font-weight: 400;
+      color: var(--text-dark);
+      line-height: 1.4;
+    }
+    .pain-intro-text em { color: var(--mint); font-style: italic; }
+
+    .pain-chips { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 16px; }
+    .pain-chip {
+      font-size: 11px; padding: 5px 14px;
+      border-radius: var(--radius-pill);
+      background: var(--violet-mid);
+      color: var(--text-mid);
+      border: 0.5px solid var(--violet-soft);
+    }
+
+    .ziel-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 12px;
+    }
+
+    .ziel-card {
+      background: white;
+      border-radius: var(--radius-lg);
+      padding: 1.5rem;
+      border: 0.5px solid var(--offwhite-dark);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+    .ziel-card:hover { transform: translateY(-3px); border-color: var(--mint); }
+
+    .ziel-card-top { display: flex; align-items: center; gap: 12px; }
+    .ziel-icon { width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 22px; flex-shrink: 0; }
+    .ziel-title { font-size: 15px; font-weight: 500; color: var(--violet); line-height: 1.3; }
+    .ziel-subtitle { font-size: 11px; color: #9189AA; margin-top: 2px; }
+
+    .pain-box {
+      background: #f8f6f2;
+      border-radius: 10px;
+      padding: 12px 14px;
+      font-size: 12px;
+      color: #6a7a86;
+      line-height: 1.65;
+      border-left: 2px solid var(--offwhite-dark);
+      font-style: italic;
+    }
+
+    .solution-text { font-size: 13px; color: #5a6e7a; line-height: 1.7; }
+    .solution-text em { font-style: normal; font-weight: 500; color: #1a6645; }
+    .solution-text.lav em { color: #4a1a8a; }
+
+    .outsource-box {
+      background: var(--lav-soft);
+      border: 0.5px solid rgba(200,168,255,0.3);
+      border-radius: 10px;
+      padding: 12px 14px;
+    }
+    .outsource-title { font-size: 11px; font-weight: 600; color: var(--lav); margin-bottom: 8px; }
+    .outsource-item {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 11px; color: #6a7a86;
+      line-height: 1.5; margin-bottom: 4px;
+    }
+    .outsource-check { color: var(--mint); font-size: 12px; flex-shrink: 0; }
+
+    .ziel-chips { display: flex; gap: 5px; flex-wrap: wrap; }
+    .ziel-chip {
+      font-size: 10px; font-weight: 500;
+      padding: 3px 10px; border-radius: var(--radius-pill);
+    }
+
+    /* ═══════════════════════════════════════
+       KONTAKT
+    ═══════════════════════════════════════ */
+    #kontakt { background: var(--violet); }
+
+    .kontakt-intro { margin-bottom: 40px; }
+    .kontakt-title {
+      font-family: var(--font-serif);
+      font-size: clamp(28px, 4vw, 44px);
+      font-weight: 400;
+      color: var(--text-dark);
+      line-height: 1.2;
+      margin-bottom: 12px;
+    }
+    .kontakt-title em { color: var(--mint); font-style: italic; }
+    .kontakt-sub { font-size: 14px; color: var(--text-mid); line-height: 1.75; max-width: 480px; }
+
+    .kontakt-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+
+    .kontakt-card {
+      background: var(--violet-mid);
+      border-radius: var(--radius-lg);
+      padding: 1.5rem;
+      border: 0.5px solid var(--violet-soft);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .kontakt-card.highlight { border-color: rgba(93,235,184,0.4); }
+
+    .kontakt-card-icon { font-size: 28px; margin-bottom: 4px; }
+    .kontakt-card-title { font-size: 15px; font-weight: 500; color: var(--text-dark); }
+    .kontakt-card-desc  { font-size: 12px; color: var(--text-mid); line-height: 1.65; }
+    .kontakt-card-desc em { color: var(--mint); font-style: normal; }
+
+    /* Formular */
+    .form-row { display: flex; flex-direction: column; gap: 6px; }
+    .form-label {
+      font-size: 10px; font-weight: 600;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      color: var(--text-muted);
+    }
+    .form-input, .form-textarea {
+      background: rgba(255,255,255,0.04);
+      border: 0.5px solid var(--violet-soft);
+      border-radius: 10px;
+      padding: 10px 14px;
+      font-family: var(--font-sans);
+      font-size: 13px;
+      color: var(--text-dark);
+      width: 100%;
+      transition: border-color 0.2s;
+      outline: none;
+    }
+    .form-input::placeholder, .form-textarea::placeholder { color: var(--text-muted); }
+    .form-input:focus, .form-textarea:focus { border-color: var(--mint); }
+    .form-textarea { resize: vertical; min-height: 80px; }
+
+    .kontakt-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      padding-top: 24px;
+      border-top: 0.5px solid var(--violet-soft);
+    }
+    .kontakt-footer-text { font-size: 12px; color: var(--text-muted); line-height: 1.6; }
+    .kontakt-footer-text em { color: var(--mint); font-style: normal; }
+    .kontakt-footer-chips { display: flex; gap: 8px; flex-wrap: wrap; }
+    .kontakt-footer-chip {
+      font-size: 10px; padding: 4px 12px;
+      border-radius: var(--radius-pill);
+      background: var(--violet-mid);
+      color: var(--text-mid);
+      border: 0.5px solid var(--violet-soft);
+    }
+
+    /* ═══════════════════════════════════════
+       FOOTER
+    ═══════════════════════════════════════ */
+    footer {
+      background: #1a1928;
+      padding: 24px 0;
+    }
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .footer-brand { display: flex; flex-direction: column; gap: 2px; }
+    .footer-name  { font-size: 14px; font-weight: 500; color: var(--text-dark); }
+    .footer-claim { font-size: 9px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mint); }
+    .footer-links { display: flex; gap: 20px; flex-wrap: wrap; }
+    .footer-links a { font-size: 12px; color: var(--text-muted); transition: color 0.2s; }
+    .footer-links a:hover { color: var(--mint); }
+    .footer-copy  { font-size: 11px; color: var(--text-muted); }
+
+    /* ═══════════════════════════════════════
+       SCROLL ANIMATIONS
+    ═══════════════════════════════════════ */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .fade-up-delay-1 { transition-delay: 0.1s; }
+    .fade-up-delay-2 { transition-delay: 0.2s; }
+    .fade-up-delay-3 { transition-delay: 0.3s; }
+
+    /* ═══════════════════════════════════════
+       RESPONSIVE
+    ═══════════════════════════════════════ */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .nav-burger { display: flex; }
+      nav.mobile-open .nav-links {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 100%; left: 0; right: 0;
+        background: var(--violet);
+        padding: 20px 24px;
+        gap: 20px;
+        border-top: 0.5px solid var(--violet-soft);
+      }
+      nav.mobile-open .nav-links .btn { align-self: flex-start; }
+
+      .trust-grid { grid-template-columns: 1fr; }
+      .about-grid { grid-template-columns: 1fr; }
+      .about-photo-circle { max-width: 160px; }
+      .leistung-card.star-card { grid-column: span 1; }
+      .kontakt-grid { grid-template-columns: 1fr; }
+      .stats-bar { justify-content: center; }
+      .stat-sep { display: none; }
+    }
+
+    @media (max-width: 480px) {
+      section { padding: 60px 0; }
+      .hero-headline, .hero-headline-2 { font-size: 36px; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ═══════════════════════════════════════
+       NAVIGATION
+  ═══════════════════════════════════════ -->
+  <nav id="navbar">
+    <div class="container">
+      <div class="nav-inner">
+        <a href="#" class="nav-logo" aria-label="Svenja Klein – Zahlen. Digital. Klar.">
+          <div class="logo-icon">
+            <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <circle cx="18" cy="18" r="17" fill="#5DEBB8" fill-opacity="0.1"/>
+              <circle cx="18" cy="18" r="11" fill="#5DEBB8" fill-opacity="0.22"/>
+              <circle cx="18" cy="18" r="6" fill="#5DEBB8"/>
+              <circle cx="27" cy="10" r="4" fill="#C8A8FF" fill-opacity="0.75"/>
+              <circle cx="10" cy="11" r="3" fill="#5DEBB8" fill-opacity="0.5"/>
+            </svg>
+          </div>
+          <div class="nav-wordmark">
+            <span class="nav-name">Svenja Klein</span>
+            <span class="nav-claim">Zahlen. Digital. Klar.</span>
+          </div>
+        </a>
+
+        <ul class="nav-links" id="nav-links">
+          <li><a href="#leistungen">Leistungen</a></li>
+          <li><a href="#tools">Tools</a></li>
+          <li><a href="#ueber-mich">Über mich</a></li>
+          <li><a href="#zielgruppen">Für wen</a></li>
+          <li><a href="#kontakt" class="btn btn-mint nav-cta">Erstgespräch →</a></li>
+        </ul>
+
+        <div class="nav-burger" id="nav-burger" aria-label="Menü öffnen" role="button" tabindex="0">
+          <span></span><span></span><span></span>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ═══════════════════════════════════════
+       HERO
+  ═══════════════════════════════════════ -->
+  <section id="hero">
+    <div class="hero-deco hero-deco-1" aria-hidden="true"></div>
+    <div class="hero-deco hero-deco-2" aria-hidden="true"></div>
+    <div class="hero-deco hero-deco-3" aria-hidden="true"></div>
+    <div class="hero-deco hero-deco-4" aria-hidden="true"></div>
+
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-tag fade-up">
+          <span class="tag tag-mint">Buchhaltung · neu gedacht</span>
+        </div>
+        <h1 class="hero-headline fade-up fade-up-delay-1">
+          Dein Steuerberater redet.
+        </h1>
+        <p class="hero-headline-2 fade-up fade-up-delay-1">Ich mache. Fang heute an.</p>
+        <p class="hero-sub fade-up fade-up-delay-2">
+          Ich kümmere mich um deine Buchhaltung – <em>digital, strukturiert und so erklärt, dass du es wirklich verstehst.</em><br><br>
+          Kein Fachjargon. Kein Vertrösten. Ich hinterfrage, bleibe am Ball und <strong>erkläre dir jeden Schritt in normaler Sprache</strong> – damit du weißt, wo dein Unternehmen steht.
+        </p>
+        <div class="hero-cta fade-up fade-up-delay-3">
+          <a href="#kontakt" class="btn btn-mint">Kostenloses Erstgespräch →</a>
+          <a href="#leistungen" class="btn btn-ghost">Leistungen ansehen</a>
+        </div>
+        <div class="hero-pills fade-up fade-up-delay-3">
+          <div class="hero-pill"><span>sevDesk</span> · Lexoffice · Personio</div>
+          <div class="hero-pill">seit <span>2017</span> cloudbasiert</div>
+          <div class="hero-pill">Gastro · KMU · Freelancer</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       TRUST BAR
+  ═══════════════════════════════════════ -->
+  <section id="trust">
+    <div class="container">
+      <div class="trust-grid fade-up">
+        <div class="trust-item">
+          <div class="trust-icon trust-icon-mint">⚡</div>
+          <div class="trust-title">Tech, der wirklich hilft</div>
+          <p class="trust-body">sevDesk, Lexoffice, Personio – ich richte ein, erkläre und <em>bleibe dran.</em> Kein Setup das nach zwei Wochen keiner mehr versteht.</p>
+        </div>
+        <div class="trust-item">
+          <div class="trust-icon trust-icon-lav">👁</div>
+          <div class="trust-title">Detail und Überblick</div>
+          <p class="trust-body">Ich verliere mich nicht in Zahlen – und verliere <em>nie den Blick fürs Ganze.</em> Buchung und Strategie gehören zusammen.</p>
+        </div>
+        <div class="trust-item">
+          <div class="trust-icon trust-icon-mint">💬</div>
+          <div class="trust-title">Kein Fachjargon</div>
+          <p class="trust-body">Ich erkläre was ich tue – in normaler Sprache. Du verstehst jederzeit wo dein Unternehmen steht. <em>Versprochen.</em></p>
+        </div>
+      </div>
+
+      <div class="stats-bar fade-up fade-up-delay-1">
+        <div class="stat">
+          <div class="stat-num">9+</div>
+          <div class="stat-label">Jahre cloudbasiert</div>
+        </div>
+        <div class="stat-sep"></div>
+        <div class="stat">
+          <div class="stat-num">10+</div>
+          <div class="stat-label">Tools täglich im Einsatz</div>
+        </div>
+        <div class="stat-sep"></div>
+        <div class="stat">
+          <div class="stat-num">1</div>
+          <div class="stat-label">Ansprechpartnerin für alles</div>
+        </div>
+        <div class="stat-sep"></div>
+        <div class="stat">
+          <div class="stat-num">0×</div>
+          <div class="stat-label">Behörden-Deutsch</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       STATEMENT
+  ═══════════════════════════════════════ -->
+  <div class="statement-section">
+    <div class="statement-deco" style="width:300px;height:300px;top:-100px;right:-80px;background:var(--mint);opacity:0.06;" aria-hidden="true"></div>
+    <div class="statement-deco" style="width:150px;height:150px;bottom:-60px;left:-40px;background:var(--lav);opacity:0.05;" aria-hidden="true"></div>
+    <div class="container">
+      <p class="statement-eyebrow fade-up">Zahlen. Digital. Klar.</p>
+      <h2 class="statement-text fade-up fade-up-delay-1">
+        Buchhaltung war noch nie<br><em>so wenig grau.</em>
+      </h2>
+      <div class="statement-line fade-up fade-up-delay-2"></div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════
+       LEISTUNGEN
+  ═══════════════════════════════════════ -->
+  <section id="leistungen">
+    <div class="container">
+      <div class="section-header fade-up">
+        <p class="section-eyebrow">Leistungen</p>
+        <h2 class="section-title">Was ich für dich tue – konkret.</h2>
+        <p class="section-sub">Keine trockene Liste. Sondern echte Arbeit, die deinen Alltag leichter macht.</p>
+      </div>
+
+      <!-- Buchhaltung & Finance -->
+      <div class="leistungen-group">
+        <div class="group-divider fade-up">
+          <span class="group-divider-label" style="background:rgba(93,235,184,0.12);color:#1a6645;border:0.5px solid rgba(93,235,184,0.3);">Buchhaltung & Finance</span>
+          <div class="group-divider-line"></div>
+        </div>
+        <div class="leistungen-grid">
+          <div class="leistung-card star-card fade-up">
+            <div class="card-top">
+              <div class="card-icon-wrap" style="background:rgba(93,235,184,0.15);">🧾</div>
+              <span class="card-badge" style="background:var(--mint);color:#0a3d28;">Spezialgebiet</span>
+            </div>
+            <div class="card-title">Differenzbesteuerung · §25a UStG</div>
+            <p class="card-body">Gebrauchtwaren, Kunsthandel, Kfz-Handel – die <em>Differenzbesteuerung ist komplex</em> und wird von vielen falsch gebucht. Ich kenne jeden Fallstrick, rekonstruiere fehlerhafte Bücher und richte den Prozess sauber ein. Inklusive Vorbereitung der USt-Voranmeldung und Abstimmung mit dem Steuerberater.</p>
+          </div>
+
+          <div class="leistung-card mint-card fade-up">
+            <div class="card-icon-wrap" style="background:rgba(93,235,184,0.12);">📅</div>
+            <div class="card-title">Laufende Buchhaltung</div>
+            <p class="card-body">Belege, Buchungen, Konten – nach HGB, digital und immer aktuell. Du weißt jederzeit wo du stehst.</p>
+          </div>
+
+          <div class="leistung-card mint-card fade-up">
+            <div class="card-icon-wrap" style="background:rgba(93,235,184,0.12);">↔️</div>
+            <div class="card-title">Kreditoren- & Debitorenmanagement</div>
+            <p class="card-body">Rechnungsein- und -ausgang, Mahnwesen, Zahlungsläufe – strukturiert und ohne dass etwas untergeht.</p>
+          </div>
+
+          <div class="leistung-card fade-up">
+            <div class="card-icon-wrap" style="background:#f0ede8;">📄</div>
+            <div class="card-title">USt-Voranmeldung</div>
+            <p class="card-body">Ich erstelle und übermittle deine Voranmeldung direkt über Lexoffice oder sevDesk. Dein Steuerberater prüft nur noch am Jahresende. Das spart Zeit und Kosten.</p>
+            <div class="card-chips">
+              <span class="card-chip" style="background:rgba(93,235,184,0.1);color:#0a6640;border:0.5px solid rgba(93,235,184,0.3);">Lexoffice</span>
+              <span class="card-chip" style="background:rgba(93,235,184,0.1);color:#0a6640;border:0.5px solid rgba(93,235,184,0.3);">sevDesk</span>
+            </div>
+          </div>
+
+          <div class="leistung-card fade-up">
+            <div class="card-icon-wrap" style="background:#f0ede8;">📊</div>
+            <div class="card-title">Controlling & Liquiditätsplanung</div>
+            <p class="card-body">Woher kommt Geld, wohin geht es, was kommt als nächstes? Klare Tabellen, klare Antworten.</p>
+          </div>
+
+          <div class="leistung-card fade-up">
+            <div class="card-icon-wrap" style="background:#f0ede8;">📈</div>
+            <div class="card-title">BWA-Vorbereitung</div>
+            <p class="card-body">Monatliche Auswertung deiner Zahlen – damit du und dein Steuerberater auf dem gleichen Stand sind.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Digitalisierung -->
+      <div class="leistungen-group">
+        <div class="group-divider fade-up">
+          <span class="group-divider-label" style="background:var(--lav-soft);color:#4a1a8a;border:0.5px solid rgba(200,168,255,0.3);">Digitalisierung & Tools</span>
+          <div class="group-divider-line"></div>
+        </div>
+        <div class="leistungen-grid">
+          <div class="leistung-card lav-card fade-up">
+            <div class="card-icon-wrap" style="background:var(--lav-soft);">⚙️</div>
+            <div class="card-title">sevDesk & Lexoffice Einrichtung</div>
+            <p class="card-body">Setup, Kontenrahmen, Automatisierungen – ich richte ein und erkläre dir alles bis du es selbst beherrschst.</p>
+          </div>
+
+          <div class="leistung-card lav-card fade-up">
+            <div class="card-icon-wrap" style="background:var(--lav-soft);">☁️</div>
+            <div class="card-title">Digitalisierung von Buchhaltungsprozessen</div>
+            <p class="card-body">Papierchaos war gestern. Ich analysiere deine Abläufe und baue dir einen Prozess der wirklich funktioniert.</p>
+          </div>
+
+          <div class="leistung-card fade-up">
+            <div class="card-icon-wrap" style="background:#f0ede8;">🗄️</div>
+            <div class="card-title">DATEV Unternehmen Online</div>
+            <p class="card-body">Belegübermittlung, Buchführung, Zusammenarbeit mit dem Steuerberater – ich kenne DATEV von beiden Seiten.</p>
+          </div>
+
+          <div class="leistung-card fade-up">
+            <div class="card-icon-wrap" style="background:#f0ede8;">📋</div>
+            <div class="card-title">Controlling-Tabellen & Dashboards</div>
+            <p class="card-body">Individuelle Google Sheets oder Excel-Lösungen – maßgeschneidert, verständlich, sofort nutzbar.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- HR & Payroll -->
+      <div class="leistungen-group">
+        <div class="group-divider fade-up">
+          <span class="group-divider-label" style="background:rgba(37,35,51,0.08);color:#9189AA;border:0.5px solid rgba(37,35,51,0.15);">HR & Payroll</span>
+          <div class="group-divider-line"></div>
+        </div>
+        <div class="leistungen-grid">
+          <div class="leistung-card fade-up">
+            <div class="card-icon-wrap" style="background:#f0ede8;">👥</div>
+            <div class="card-title">HR-Administration mit Personio</div>
+            <p class="card-body">Stammdaten, Verträge, On- & Offboarding – alles digital, alles an einem Ort, alles nachvollziehbar.</p>
+          </div>
+
+          <div class="leistung-card fade-up">
+            <div class="card-icon-wrap" style="background:#f0ede8;">💶</div>
+            <div class="card-title">Vorbereitende Lohnbuchhaltung</div>
+            <p class="card-body">Ich bereite alles für dein Lohnbüro vor – vollständig, pünktlich und ohne dass du selbst in Paragraphen einsteigen musst.</p>
+            <div class="card-note">ℹ️ Aktuell ausschließlich in Kombination mit Personio – weitere Systeme folgen.</div>
+          </div>
+
+          <div class="leistung-card fade-up">
+            <div class="card-icon-wrap" style="background:#f0ede8;">🪪</div>
+            <div class="card-title">Digitale Mitarbeiterakte</div>
+            <p class="card-body">Schluss mit Ordnern und Papier. Ich baue dir eine saubere digitale Struktur – DSGVO-konform und jederzeit auffindbar.</p>
+          </div>
+
+          <div class="leistung-card fade-up">
+            <div class="card-icon-wrap" style="background:#f0ede8;">🚀</div>
+            <div class="card-title">Personio Payroll Implementierung</div>
+            <p class="card-body">Von null auf läuft – ich implementiere Personio Payroll und sorge dafür dass dein Team es auch wirklich nutzt.</p>
+            <div class="card-note">ℹ️ Spezialisiert auf Personio – du bekommst echte Praxiserfahrung, keine generische Lösung.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       TECH STACK
+  ═══════════════════════════════════════ -->
+  <section id="tools">
+    <div class="container">
+      <div class="section-header fade-up">
+        <p class="section-eyebrow">Mein Tech-Stack</p>
+        <h2 class="section-title">Tools sind nur so gut wie<br>die Person dahinter.</h2>
+        <p class="section-sub" style="color:var(--text-mid);">Ich arbeite seit über 9 Jahren cloudbasiert – nicht weil es modern klingt, sondern weil es funktioniert. Jedes Tool hier kenne ich aus dem echten Arbeitsalltag.</p>
+      </div>
+
+      <p class="tools-group-label mint fade-up">Finance & Buchhaltung</p>
+      <div class="tools-grid fade-up fade-up-delay-1">
+        <div class="tool-card highlight">
+          <span class="tool-badge" style="background:var(--mint);color:#0a3d28;">Haupttool</span>
+          <div class="tool-name">sevDesk</div>
+          <p class="tool-desc">Einrichtung, laufende Buchh., USt-Voranmeldung, Belegmanagement</p>
+        </div>
+        <div class="tool-card highlight">
+          <span class="tool-badge" style="background:var(--mint);color:#0a3d28;">Haupttool</span>
+          <div class="tool-name">Lexoffice</div>
+          <p class="tool-desc">Einrichtung, laufende Buchh., USt-Voranmeldung, Rechnungen</p>
+        </div>
+        <div class="tool-card">
+          <div class="tool-name">DATEV Unternehmen Online</div>
+          <p class="tool-desc">Belegübermittlung & Zusammenarbeit mit Steuerberatern</p>
+        </div>
+        <div class="tool-card">
+          <div class="tool-name">Commitly</div>
+          <p class="tool-desc">Liquiditätsplanung & Cashflow-Übersicht in Echtzeit</p>
+        </div>
+      </div>
+
+      <p class="tools-group-label mint fade-up">HR & People</p>
+      <div class="tools-grid fade-up fade-up-delay-1">
+        <div class="tool-card highlight">
+          <span class="tool-badge" style="background:var(--mint);color:#0a3d28;">Spezialisiert</span>
+          <div class="tool-name">Personio</div>
+          <p class="tool-desc">HR-Admin, digitale Mitarbeiterakte, On-/Offboarding</p>
+        </div>
+        <div class="tool-card highlight">
+          <span class="tool-badge" style="background:var(--mint);color:#0a3d28;">Spezialisiert</span>
+          <div class="tool-name">Personio Payroll</div>
+          <p class="tool-desc">Implementierung & vorbereitende Lohnbuchhaltung</p>
+        </div>
+      </div>
+
+      <p class="tools-group-label lav fade-up">Zusammenarbeit & Prozesse</p>
+      <div class="tools-grid fade-up fade-up-delay-1">
+        <div class="tool-card lav-tool">
+          <div class="tool-name">Google Workspace</div>
+          <p class="tool-desc">Sheets, Docs, Drive – in- und auswendig, täglich im Einsatz</p>
+        </div>
+        <div class="tool-card lav-tool">
+          <div class="tool-name">Slack</div>
+          <p class="tool-desc">Schnelle, strukturierte Kommunikation – kein E-Mail-Chaos</p>
+        </div>
+        <div class="tool-card lav-tool">
+          <div class="tool-name">Miro</div>
+          <p class="tool-desc">Prozesse visualisieren, Workflows planen, gemeinsam denken</p>
+        </div>
+        <div class="tool-card lav-tool">
+          <div class="tool-name">Asana · Notion</div>
+          <p class="tool-desc">Projektmanagement & Dokumentation – je nach Kundenwunsch</p>
+        </div>
+      </div>
+
+      <div class="tools-footer fade-up">
+        <p class="tools-footer-text">Dein Unternehmen nutzt ein anderes Tool? <em>Kein Problem – ich lerne schnell.</em><br>Neue Systeme sind für mich kein Hindernis, sondern eine Aufgabe.</p>
+        <a href="#kontakt" class="btn btn-mint">Jetzt anfragen →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       ÜBER MICH
+  ═══════════════════════════════════════ -->
+  <section id="ueber-mich">
+    <div class="container">
+      <div class="about-grid">
+        <div class="fade-up">
+          <div class="about-photo-circle">
+            <div class="about-photo-ring" style="width:110%;height:110%;top:-5%;left:-5%;"></div>
+            <div class="about-photo-ring" style="width:122%;height:122%;top:-11%;left:-11%;opacity:0.5;"></div>
+            <!-- Foto hier einsetzen: <img src="foto.jpg" alt="Svenja Klein"> -->
+            <div class="about-photo-placeholder" aria-hidden="true">🙋‍♀️</div>
+          </div>
+          <div class="about-fact-chips">
+            <div class="about-fact-chip"><span class="chip-accent">9+</span> Jahre cloudbasiert</div>
+            <div class="about-fact-chip"><span class="chip-lav">Gastro</span> · KMU · Agentur</div>
+            <div class="about-fact-chip"><span class="chip-accent">Biebertal</span> · remote überall</div>
+            <div class="about-fact-chip">Multitasking <span class="chip-lav">als Superkraft</span></div>
+          </div>
+        </div>
+
+        <div class="fade-up fade-up-delay-1">
+          <p class="about-eyebrow">Über mich</p>
+          <h2 class="about-headline">
+            Ich sehe jedes Detail –<br><em>und das große Ganze.</em>
+          </h2>
+          <p class="about-text">
+            Eigentlich war ich nie der Zahlen-Mensch. Jahre lang war ich im Office Management und in der Assistenz unterwegs – <strong>Multitasking, Organisation, immer zehn Dinge gleichzeitig.</strong> Irgendwann habe ich meine eigene Buchhaltung gemacht. Dann die eines Restaurants aufgesetzt. Und plötzlich hat es Klick gemacht.
+          </p>
+          <div class="about-quote">
+            <p>"Zahlen lügen nicht. Sie sind ehrlich. Und dankbar."</p>
+          </div>
+          <p class="about-text">
+            Heute verstehe ich Zahlen schnell, <em>denke in Prozessen</em> und erkläre beides so, dass du nach unserem Gespräch weißt wo du stehst – ohne Fachjargon, ohne dass du einen Abschluss brauchst um es zu verstehen.
+          </p>
+          <p class="about-text">
+            Mein Ziel: <strong>dass Buchhaltung für dich kein notwendiges Übel mehr ist.</strong> Sondern etwas das dir wirklich hilft, dein Unternehmen zu verstehen.
+          </p>
+          <a href="#kontakt" class="btn btn-mint" style="margin-top:8px;">Lass uns kennenlernen →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       ZIELGRUPPEN
+  ═══════════════════════════════════════ -->
+  <section id="zielgruppen">
+    <div class="container">
+      <div class="section-header fade-up">
+        <p class="section-eyebrow">Für wen</p>
+        <h2 class="section-title">Kommt dir das bekannt vor?</h2>
+      </div>
+
+      <div class="pain-intro fade-up">
+        <div class="pain-intro-deco" style="width:300px;height:300px;top:-100px;right:-80px;background:var(--mint);opacity:0.05;" aria-hidden="true"></div>
+        <div class="pain-intro-tag">
+          <span class="tag tag-ghost">Klingt familiar?</span>
+        </div>
+        <p class="pain-intro-text">
+          "Ich bin überfordert und weiß nicht was mein Steuerberater von mir will."<br>
+          <em>"Und ich habe schlicht keine Zeit."</em>
+        </p>
+        <div class="pain-chips">
+          <div class="pain-chip">😮‍💨 Fachchinesisch ohne Ende</div>
+          <div class="pain-chip">⏰ Keine Zeit für Buchhaltung</div>
+          <div class="pain-chip">😶 Keine Ahnung warum ich was tue</div>
+        </div>
+      </div>
+
+      <div class="ziel-grid">
+        <div class="ziel-card fade-up">
+          <div class="ziel-card-top">
+            <div class="ziel-icon" style="background:rgba(93,235,184,0.1);">🍽️</div>
+            <div>
+              <div class="ziel-title">Gastronomen & Restaurantbetreiber</div>
+              <div class="ziel-subtitle">Einzelbetrieb · Kette · Eventlocation</div>
+            </div>
+          </div>
+          <div class="pain-box">"Ich stehe den ganzen Tag in der Küche. Für Buchhaltung bleibt keine Zeit – und ich verstehe auch nicht was mein Steuerberater von mir will."</div>
+          <p class="solution-text">Du kümmerst dich um deine Gäste. <em>Ich kümmere mich um deine Zahlen.</em> Ich kenne Gastro von innen – kein langes Erklären, direktes Anpacken.</p>
+          <div class="ziel-chips">
+            <span class="ziel-chip" style="background:rgba(93,235,184,0.1);color:#0a6640;border:0.5px solid rgba(93,235,184,0.3);">Kassensysteme</span>
+            <span class="ziel-chip" style="background:rgba(93,235,184,0.1);color:#0a6640;border:0.5px solid rgba(93,235,184,0.3);">Wareneinsatz</span>
+            <span class="ziel-chip" style="background:rgba(93,235,184,0.1);color:#0a6640;border:0.5px solid rgba(93,235,184,0.3);">Saisonales Controlling</span>
+          </div>
+        </div>
+
+        <div class="ziel-card fade-up fade-up-delay-1">
+          <div class="ziel-card-top">
+            <div class="ziel-icon" style="background:var(--lav-soft);">🏢</div>
+            <div>
+              <div class="ziel-title">Kleine & mittlere Unternehmen</div>
+              <div class="ziel-subtitle">Handel · Dienstleistung · bis ~50 MA</div>
+            </div>
+          </div>
+          <div class="pain-box">"Wir bräuchten eigentlich jemanden für Buchhaltung und HR – aber eine feste Stelle lohnt sich nicht. Und die Zeit dafür haben wir auch nicht."</div>
+          <p class="solution-text lav">Genau dafür bin ich da. <em>Outsourcing statt Festanstellung</em> – du bekommst volle Kompetenz ohne Gehalt, Sozialabgaben oder Einarbeitung.</p>
+          <div class="outsource-box">
+            <div class="outsource-title">Was du dir sparst:</div>
+            <div class="outsource-item"><span class="outsource-check">✓</span>Kein Festgehalt & keine Sozialabgaben</div>
+            <div class="outsource-item"><span class="outsource-check">✓</span>Keine Einarbeitung – ich starte direkt</div>
+            <div class="outsource-item"><span class="outsource-check">✓</span>Kein Urlaub der überbrückt werden muss</div>
+            <div class="outsource-item"><span class="outsource-check">✓</span>Nur zahlen was du wirklich brauchst</div>
+          </div>
+          <div class="ziel-chips">
+            <span class="ziel-chip" style="background:var(--lav-soft);color:#4a1a8a;border:0.5px solid rgba(200,168,255,0.3);">Prozessaufbau</span>
+            <span class="ziel-chip" style="background:var(--lav-soft);color:#4a1a8a;border:0.5px solid rgba(200,168,255,0.3);">Personio</span>
+            <span class="ziel-chip" style="background:var(--lav-soft);color:#4a1a8a;border:0.5px solid rgba(200,168,255,0.3);">Outsourcing</span>
+          </div>
+        </div>
+
+        <div class="ziel-card fade-up fade-up-delay-2">
+          <div class="ziel-card-top">
+            <div class="ziel-icon" style="background:rgba(93,235,184,0.1);">💻</div>
+            <div>
+              <div class="ziel-title">Einzelunternehmer & Freelancer</div>
+              <div class="ziel-subtitle">Selbstständige · Kreative · Berater</div>
+            </div>
+          </div>
+          <div class="pain-box">"Ich mache alles selbst – auch die Buchhaltung. Aber ich weiß nicht ob ich es richtig mache, und irgendwann hat mich der Steuerberater angerufen und ich hab kein Wort verstanden."</div>
+          <p class="solution-text">Du bist gut in dem was du tust – <em>lass mich gut sein in dem was ich tue.</em> Ich richte deine Buchhaltung sauber auf und erkläre dir jeden Schritt.</p>
+          <div class="ziel-chips">
+            <span class="ziel-chip" style="background:rgba(93,235,184,0.1);color:#0a6640;border:0.5px solid rgba(93,235,184,0.3);">EÜR</span>
+            <span class="ziel-chip" style="background:rgba(93,235,184,0.1);color:#0a6640;border:0.5px solid rgba(93,235,184,0.3);">USt-Voranmeldung</span>
+            <span class="ziel-chip" style="background:rgba(93,235,184,0.1);color:#0a6640;border:0.5px solid rgba(93,235,184,0.3);">Lexoffice · sevDesk</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       KONTAKT
+  ═══════════════════════════════════════ -->
+  <section id="kontakt">
+    <div class="container">
+      <div class="kontakt-intro fade-up">
+        <p class="section-eyebrow" style="color:var(--mint);">Lass uns sprechen</p>
+        <h2 class="kontakt-title">
+          Dein Steuerberater redet. Ich mache.<br><em>Fang heute an.</em>
+        </h2>
+        <p class="kontakt-sub">30 Minuten. Kostenlos. Kein Verkaufsgespräch – sondern ein ehrliches Kennenlernen ob wir zusammenpassen. Du erzählst mir von deiner Situation, ich sage dir was ich tun kann.</p>
+      </div>
+
+      <div class="kontakt-grid fade-up fade-up-delay-1">
+        <div class="kontakt-card highlight">
+          <div class="kontakt-card-icon">📅</div>
+          <div class="kontakt-card-title">Direkt Termin buchen</div>
+          <p class="kontakt-card-desc">Such dir einen Slot der passt – <em>ich bin da.</em> Kein Hin und Her per Mail, kein Warten.</p>
+          <!-- Calendly-Link hier eintragen -->
+          <a href="https://calendly.com/" target="_blank" rel="noopener" class="btn btn-mint" style="align-self:flex-start;margin-top:8px;">Kostenloses Erstgespräch buchen →</a>
+        </div>
+
+        <div class="kontakt-card">
+          <div class="kontakt-card-icon">✉️</div>
+          <div class="kontakt-card-title">Kurz schreiben</div>
+          <p class="kontakt-card-desc">Lieber erstmal schreiben? Kein Problem – ich antworte innerhalb von 24 Stunden.</p>
+          <form action="https://formspree.io/f/DEINE_ID" method="POST" style="display:flex;flex-direction:column;gap:10px;margin-top:4px;">
+            <div class="form-row">
+              <label class="form-label" for="name">Name</label>
+              <input class="form-input" type="text" id="name" name="name" placeholder="Dein Name" required>
+            </div>
+            <div class="form-row">
+              <label class="form-label" for="thema">Unternehmen & Thema</label>
+              <input class="form-input" type="text" id="thema" name="thema" placeholder="Worum geht's?">
+            </div>
+            <div class="form-row">
+              <label class="form-label" for="email">E-Mail</label>
+              <input class="form-input" type="email" id="email" name="email" placeholder="deine@email.de" required>
+            </div>
+            <div class="form-row">
+              <label class="form-label" for="nachricht">Nachricht</label>
+              <textarea class="form-textarea" id="nachricht" name="nachricht" placeholder="Kurz beschreiben was du brauchst..."></textarea>
+            </div>
+            <button type="submit" class="btn btn-ghost" style="align-self:flex-start;">Nachricht senden →</button>
+          </form>
+        </div>
+      </div>
+
+      <div class="kontakt-footer fade-up">
+        <p class="kontakt-footer-text">Antwortet innerhalb <em>24 Stunden</em> · Remote & vor Ort im Raum Gießen</p>
+        <div class="kontakt-footer-chips">
+          <div class="kontakt-footer-chip">Gastro</div>
+          <div class="kontakt-footer-chip">KMU</div>
+          <div class="kontakt-footer-chip">Einzelunternehmer</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       FOOTER
+  ═══════════════════════════════════════ -->
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <span class="footer-name">Svenja Klein</span>
+          <span class="footer-claim">Zahlen. Digital. Klar.</span>
+        </div>
+        <nav class="footer-links" aria-label="Footer Navigation">
+          <a href="impressum.html">Impressum</a>
+          <a href="datenschutz.html">Datenschutz</a>
+          <a href="mailto:svenja@zahlen-digital-klar.de">svenja@zahlen-digital-klar.de</a>
+        </nav>
+        <p class="footer-copy">© 2025 Svenja Klein</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ═══════════════════════════════════════
+       JAVASCRIPT
+  ═══════════════════════════════════════ -->
+  <script>
+    // Nav scrolled state
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 40);
+    });
+
+    // Mobile menu
+    const burger = document.getElementById('nav-burger');
+    burger.addEventListener('click', () => {
+      navbar.classList.toggle('mobile-open');
+    });
+    burger.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') navbar.classList.toggle('mobile-open');
+    });
+
+    // Close mobile menu on link click
+    document.querySelectorAll('#nav-links a').forEach(link => {
+      link.addEventListener('click', () => navbar.classList.remove('mobile-open'));
+    });
+
+    // Scroll animations
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+    // Hero immediate reveal
+    document.querySelectorAll('#hero .fade-up').forEach(el => {
+      setTimeout(() => el.classList.add('visible'), 100);
+    });
+  </script>
+
+</body>
+</html>
